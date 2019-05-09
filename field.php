@@ -2,15 +2,15 @@
 
     require 'admin/database.php';
 
-    if(!empty ($_GET['idSport'])){
-        $idSport = checkInput($_GET['idSport']);
+    if(!empty ($_GET['idField'])){
+        $idField = checkInput($_GET['idField']);
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT sports.idSport, sports.nameSport, sports.titleSport, sports.seasonSport, sports.descriptionSport, sports.urlImageSport, field.idField, field.nameField, field.urlImageField FROM sports INNER jOIN field ON sports.idField = field.idField WHERE idSport = ?');
+    $statement = $db->prepare('SELECT * FROM field WHERE idField = ?');
 
-    $statement->execute(array($idSport));
-    $sport = $statement->fetch();
+    $statement->execute(array($idField));
+    $field = $statement->fetch();
 
         function checkInput($data){
         $data = trim($data);
@@ -25,7 +25,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sport</title>
+        <title>Terrains</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -37,18 +37,12 @@
     </head>
     
     <body> 
-        <div class="wrapp">
-            <h1> <?php echo $sport['nameSport'] ; ?><br></h1>
+        <div class="wrapp2">
+            <h2> <?php echo $field['nameField'] ; ?><br></h2>
             <hr>
             <div class="textesport">
 
-                <?php echo "<img src=" . $sport['urlImageSport'] . ">" ; ?><br><br>
-
-                <p>
-                    <?php echo $sport['titleSport'] ; ?><br><br>
-                    Saison : <?php echo $sport['seasonSport'] ; ?><br><br>
-                    Terrain : <?php echo '<a href="field.php?idField=' . $sport['idField'] . ' ">' . $sport['nameField'] . '</a>'; ?><br><br>
-                    Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br><br></p>
+                <?php echo "<img src=" . $field['urlImageField'] . ">" ; ?><br><br>
                     
             </div>
            <a href="index.php">Retour</a>

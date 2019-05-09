@@ -7,7 +7,7 @@
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT sports.nameSport, sports.titleSport, sports.urlImageSport, sports.seasonSport, sports.descriptionSport, field.nameField
+    $statement = $db->prepare('SELECT sports.nameSport, sports.titleSport, sports.urlImageSport, sports.seasonSport, sports.descriptionSport, field.nameField, field.idField
     FROM sports
     INNER JOIN field
     ON sports.idField = field.idField
@@ -49,9 +49,12 @@
 
                 <?php echo "<img src=" . $sport['urlImageSport'] . ">" ; ?><br><br>
 
-                <p><?php echo $sport['titleSport'] ; ?><br><br>
+                <p><?php echo $sport['titleSport'] . " " . $sport['idField'] ; ?><br><br>
                     Saison : <?php echo $sport['seasonSport'] ; ?><br><br>
-                    Terrain : <?php echo $sport['nameField'] ; ?><br><br>
+                    
+                    
+                    Terrain : <?php echo   $sport['nameField']; ?><br><br>
+                    
                     Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br></p>
             </div>
            <a href="indexAdmin.php">Retour</a>
