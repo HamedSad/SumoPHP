@@ -51,7 +51,7 @@
                     Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br><br></p>
                     
             </div>
-           <a href="index.php">Retour</a>
+           <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
         </div>
     </body>
 </html>

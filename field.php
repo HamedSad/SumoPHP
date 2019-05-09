@@ -37,15 +37,15 @@
     </head>
     
     <body> 
-        <div class="wrapp2">
-            <h2> <?php echo $field['nameField'] ; ?><br></h2>
+        <div class="wrapp">
+            <h1> <?php echo $field['nameField'] ; ?><br></h1>
             <hr>
             <div class="textesport">
 
                 <?php echo "<img src=" . $field['urlImageField'] . ">" ; ?><br><br>
                     
             </div>
-           <a href="index.php">Retour</a>
+           <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
         </div>
     </body>
 </html>

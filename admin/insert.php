@@ -69,7 +69,7 @@
         <title>Sports</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" rel="stylesheet" href="styles.css">
+        <link type="text/css" rel="stylesheet" href="stylesAdmin.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>    
         <link rel="stylesheet" href="../stylesAdmin.css">
@@ -110,8 +110,8 @@
 
                             <!---  Règles --->
                             <div class="form-group">
-                                <label for="descriptionSport"></label>
-                                <textarea name="descriptionSport" id="descriptionSport" placeholder="Règles du sport" cols="82" rows="10" value=""><?php echo $urlImageSport; ?></textarea>
+                                <label for="descriptionSport" ></label>
+                                <textarea name="descriptionSport" id="descriptionSport" placeholder="Règles du sport" cols="82" rows="10" ><?php echo $urlImageSport; ?></textarea>
                                 <p class="comments"><?php echo $descriptionSportError; ?></p>
                                 <!--<input type="text" placeholder="Règles du sport" name="reglesSport" ngModel required /><br>-->
                             </div>
@@ -126,7 +126,7 @@
                             <!-- Terrain  -->
                             <div class="form-group">
                                 <label for="field">Terrain : </label><br>
-                                <select class="form-control" id="idField" name="idField">
+                                <select class="form" id="idField" name="idField">
                                     <?php
                                         $db = Database::connect();
                                         foreach($db->query("SELECT * FROM field") as $row){
@@ -146,15 +146,10 @@
                                 <a class="btn btn-primary" href="indexAdmin.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
                                 <button type="reset" class="btn btn-danger">Tout supprimer</button>
                                 <button type="submit" class="btn btn-success" class="btn btn-primary">Valider</button>
-
                             </div>
-
                         </fieldset>
                     </form>
                 </div>
-
-            </div>
-        
-        </body>
-        
+            </div>      
+        </body>        
     </html>

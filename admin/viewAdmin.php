@@ -35,21 +35,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="../stylesAdmin.css">
+        <link rel="stylesheet" href="stylesAdmin.css">
         <script src="js/script.js"></script>
     </head>
     
     <body> 
         
         <div class="wrapp">
-            <h1>Menu admin</h1>
+            <hr>
             <h1> <?php echo $sport['nameSport'] ; ?><br></h1>
             <hr>
             <div class="textesport">
 
                 <?php echo "<img src=" . $sport['urlImageSport'] . ">" ; ?><br><br>
 
-                <p><?php echo $sport['titleSport'] . " " . $sport['idField'] ; ?><br><br>
+                <p><?php echo $sport['titleSport'] ; ?><br><br>
                     Saison : <?php echo $sport['seasonSport'] ; ?><br><br>
                     
                     
@@ -57,7 +57,7 @@
                     
                     Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br></p>
             </div>
-           <a href="indexAdmin.php">Retour</a>
+            <a class="btn btn-primary" href="indexAdmin.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
         </div>
     </body>
 </html>

@@ -2,17 +2,22 @@
 
 .wrapp{
     background-color: #343A40 ;
+    padding-bottom: 25em;
+}
+
+.wrapp h1{
+    color : white;
 }
 
 a{
     text-decoration: none;
-    color:white;
+    color: white;
     font-family: Arial, Helvetica, serif;
 }
 
 h1{
     text-align: center;
-    color:white;
+    color : white; 
     padding-top : 1em;
     padding-bottom: 1em;
 }
@@ -111,7 +116,7 @@ img {
 
 a{
     text-decoration: none;
-    color:white;
+    color: white;
     font-family: Arial, Helvetica, serif;
 }
 
@@ -153,36 +158,4 @@ p{
 
 .textesport p{
     padding : 2em;
-}
-
-
-/*  New sport */
-
-h1{
-    text-align: center;
-    color:white;
-    padding-top : 1em;
-    padding-bottom: 1em;
-}
-
-hr{
-    border : solid 0.5px grey;
-}
-
-.formAddSport{
-    padding-top: 4em;
-    padding-bottom: 4em;
-    padding-left: 10%;
-}
-
-legend{
-    color:white;
-}
-
-li{
-    list-style: none;
-}
-
-.comments{
-    color : red;
 }

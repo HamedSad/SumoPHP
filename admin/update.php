@@ -88,7 +88,7 @@
         <title>Sports</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" rel="stylesheet" href="styles.css">
+        <link type="text/css" rel="stylesheet" href="stylesAdmin.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>    
         <link rel="stylesheet" href="../stylesAdmin.css">
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label for="select">Terrain : </label><br>
                                 <option>Selectionner</option>
-                                <select class="form-control" id="idField" name="idField">
+                                <select id="idField" name="idField">
                                     <?php 
                                         $db = Database::connect();
                                         

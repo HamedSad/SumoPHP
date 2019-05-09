@@ -1,0 +1,47 @@
+/*  ViewAdmin */
+.textesport img{
+    width : 100%;
+    height : 60%;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+/*  Insert et Update */
+
+h1{
+    text-align : center;
+}
+
+p{
+    color : grey;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 5%;
+}
+
+img{
+    width: 100px;
+    height: 80px;
+}
+
+.comments{
+    color : red;
+}
+
+.form-group{
+    padding-left: 20%;
+}
+
+.form-actions{
+    padding-left: 20%;
+    padding-top : 10%;
+}
+
+/*   Delete  */
+.form-actions-delete{
+    padding-left: 20%;
+    
+}
+

@@ -13,16 +13,16 @@
         <body>
 
             <div class="wrapp">
-          
                   <hr>
                   <h1>Tous les sports</h1>
-                  <hr>
-   
-                
-             <div class="sports">
-                                       
-                 <?php
-                      
+                  <hr>   
+                   <div class="recherche">
+                        <?php
+                            include "recherche.php";
+                        ?>
+                    </div>  
+             <div class="sports">               
+                 <?php           
                     require 'admin/database.php';
                     $db = Database::connect();
                     $statement = $db->query("SELECT * FROM sports ORDER BY sports.idSport DESC");
