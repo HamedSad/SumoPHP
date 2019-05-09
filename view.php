@@ -7,7 +7,7 @@
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT * FROM sports WHERE idSport = ?');
+    $statement = $db->prepare('SELECT sports.idSport, sports.nameSport, sports.titleSport, sports.seasonSport, sports.descriptionSport, sports.urlImageSport, field.nameField, field.urlImageField FROM sports INNER jOIN field ON sports.idField = field.idField WHERE idSport = ?');
 
     $statement->execute(array($idSport));
     $sport = $statement->fetch();
@@ -45,9 +45,11 @@
                 <?php echo "<img src=" . $sport['urlImageSport'] . ">" ; ?><br><br>
 
                 <p>
-                    <?php echo $sport['nameSport'] ; ?><br><br>
+                    <?php echo $sport['titleSport'] ; ?><br><br>
                     Saison : <?php echo $sport['seasonSport'] ; ?><br><br>
-                    Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br></p>
+                    Terrain : <?php echo $sport['nameField'] ; ?><br><br>
+                    Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br><br></p>
+                    
             </div>
            <a href="index.php">Retour</a>
         </div>

@@ -16,7 +16,6 @@
           
                   <hr>
                   <h1>Tous les sports</h1>
-                  <a href='/add-sport'><h5>Ajouter un sport</h5></a>
                   <hr>
    
                 

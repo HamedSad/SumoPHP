@@ -7,7 +7,11 @@
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT * FROM sports WHERE idSport = ?');
+    $statement = $db->prepare('SELECT sports.nameSport, sports.titleSport, sports.urlImageSport, sports.seasonSport, sports.descriptionSport, field.nameField
+    FROM sports
+    INNER JOIN field
+    ON sports.idField = field.idField
+    WHERE idSport = ?');
 
     $statement->execute(array($idSport));
     $sport = $statement->fetch();
@@ -31,8 +35,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../stylesAdmin.css">
         <script src="js/script.js"></script>
     </head>
     
@@ -46,9 +49,9 @@
 
                 <?php echo "<img src=" . $sport['urlImageSport'] . ">" ; ?><br><br>
 
-                <p>
-                    <?php echo $sport['nameSport'] ; ?><br><br>
+                <p><?php echo $sport['titleSport'] ; ?><br><br>
                     Saison : <?php echo $sport['seasonSport'] ; ?><br><br>
+                    Terrain : <?php echo $sport['nameField'] ; ?><br><br>
                     Règles du <?php echo $sport['nameSport'] ; ?> : <?php echo $sport['descriptionSport'] ; ?><br></p>
             </div>
            <a href="indexAdmin.php">Retour</a>

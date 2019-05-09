@@ -4,10 +4,9 @@
         <title>Sports</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" rel="stylesheet" href="../styles.css">
+        <link type="text/css" rel="stylesheet" href="../stylesAdmin.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>            
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
         </head>
              
         <body>
@@ -37,6 +36,9 @@
                             echo $sport['titleSport'] . '<br>';
                             echo $sport['seasonSport'] . '<br>'; 
                         echo "</div>";
+                        
+                        echo '<a href="viewAdmin.php?idSport=' . $sport['idSport'] . ' "> Voir  </a>';
+                        echo '<a class="btn btn-primary" href="update.php?idSport='. $sport['idSport'] . ' "><span class="glyphicon glyphicon-pencil"></span> Modifier</a>';
                         echo '<a class="btn btn-danger" href="delete.php?idSport=' . $sport['idSport'] . ' "><span class="glyphicon glyphicon-remove"></span> Supprimer</a>';
                     echo "</div>";
 

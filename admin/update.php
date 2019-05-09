@@ -1,16 +1,21 @@
 <?php
     
     require 'database.php';
+
+        if(!empty($_GET['idSport'])) 
+    {
+        $idSport = checkInput($_GET['idSport']);
+    }
     
-    $nameSport = $nameSportError = $titleSport = $titleSportError = $seasonSport = $idField = $seasonSportError = $descriptionSport = $descriptionSportError = $urlImageSport = $urlImageSportError = $idFieldError = "";
+    $nameSport = $nameSportError = $titleSport = $titleSportError = $seasonSport = $idField = $seasonSportError = $descriptionSport = $descriptionSportError = $urlImageSport = $idFieldError = $urlImageSportError = "";
 
     if(!empty($_POST)){
         $nameSport = checkInput($_POST['nameSport']);
         $titleSport = checkInput($_POST['titleSport']);
         $seasonSport = checkInput($_POST['seasonSport']);
         $descriptionSport = checkInput($_POST['descriptionSport']);
-        $urlImageSport = checkInput($_POST['urlImageSport']); 
         $idField = checkInput($_POST['idField']);
+        $urlImageSport = checkInput($_POST['urlImageSport']); 
         
         $isSuccess = true;
         
@@ -46,13 +51,28 @@
         
        if($isSuccess){
            $db = Database::connect();
-           $statement = $db->prepare("INSERT INTO sports (nameSport, titleSport, seasonSport, descriptionSport, urlImageSport, idField) VALUES (?, ?, ?, ?, ?, ?)");
-           $statement->execute(array($nameSport, $titleSport, $seasonSport, $descriptionSport, $urlImageSport, $idField));
+           $statement = $db->prepare("UPDATE sports SET nameSport = ?, titleSport = ?, seasonSport = ?, descriptionSport = ?, urlImageSport = ?, idField = ? WHERE idSport = ?");
+           $statement->execute(array($nameSport, $titleSport, $seasonSport, $descriptionSport, $urlImageSport, $idField, $idSport));
            Database::disconnect();
            header("Location: indexAdmin.php");
-       }
+            }
         
-    }
+        
+       }
+        else {
+        $db = Database::connect();
+        $statement = $db->prepare("SELECT * FROM sports WHERE idSport = ?");
+        $statement->execute(array($idSport));
+            
+        $sports = $statement->fetch();
+        $nameSport = $sports['nameSport'];
+        $titleSport = $sports['titleSport'];
+        $seasonSport = $sports['seasonSport'];
+        $descriptionSport = $sports['descriptionSport'];
+        $idField = $sports['idField'];
+        $urlImageSport = $sports['urlImageSport'];
+        Database::disconnect();
+        }
 
     function checkInput($data){
         $data = trim($data);
@@ -60,7 +80,6 @@
         $data = htmlspecialchars($data);
         return $data;
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -80,11 +99,11 @@
 
             <div class="wrapp">
                 <hr>
-                <h1>Ajouter un sport</h1>
+                <h1>Modifier un sport</h1>
                 <hr>
                 <!-- Formulaire -->
                 <div class="formAddSport">
-                    <form class="form-horizontal" role="form" action="insert.php" method="post">
+                    <form class="form" role="form" action="<?php echo 'update.php?idSport='.$idSport;?>" method="post">
                         <fieldset>
 
                             <!---  Nom du sport --->
@@ -94,7 +113,7 @@
                                 <p class="comments"><?php echo $nameSportError; ?></p>                       
                             </div>
 
-                            <!---  Description --->
+                            <!---  Titre --->
                             <div class="form-group">
                                 <label for="titleSport"></label>
                                 <input type="text" id="titleSport" name="titleSport" placeholder="Breve description" value="<?php echo $titleSport; ?>">
@@ -111,7 +130,7 @@
                             <!---  Règles --->
                             <div class="form-group">
                                 <label for="descriptionSport"></label>
-                                <textarea name="descriptionSport" id="descriptionSport" placeholder="Règles du sport" cols="82" rows="10" value=""><?php echo $urlImageSport; ?></textarea>
+                                <textarea name="descriptionSport" id="descriptionSport" placeholder="Règles du sport" cols="82" rows="10" value="<?php echo $descriptionSport; ?>"><?php echo $descriptionSport; ?></textarea>
                                 <p class="comments"><?php echo $descriptionSportError; ?></p>
                                 <!--<input type="text" placeholder="Règles du sport" name="reglesSport" ngModel required /><br>-->
                             </div>
@@ -125,21 +144,24 @@
 
                             <!-- Terrain  -->
                             <div class="form-group">
-                                <label for="field">Terrain : </label><br>
+                                <label for="select">Terrain : </label><br>
+                                <option>Selectionner</option>
                                 <select class="form-control" id="idField" name="idField">
-                                    <?php
+                                    <?php 
                                         $db = Database::connect();
-                                        foreach($db->query("SELECT * FROM field") as $row){
-                                            echo '<option value ="' . $row['idField'] . '">' . $row['nameField'].'</option>';
-                                            }
-                                        Database::disconnect();  
-                                    
+                                        
+                                        foreach($db->query('SELECT * FROM field') as $row){
+                                            if($row['idField'] == $idField)
+                                            echo '<option selected="selected" value ="' . $row['idField'] . '">' . $row['nameField'] . '</option>' ;
+                                        else
+                                            echo '<option value ="' . $row['idField'] . '">' . $row['nameField'] . '</option>' ;   
+                                        }
+                                    Database::disconnect();
                                     ?>
+                                    
+                                  
                                 </select>
-                                <p class="comments"><?php echo $idFieldError; ?></p>
                             </div> 
-                            
-                            <!-- Menu déroulant terrain -->
 
                             <!--- Bouttons --->
                             <div class="form-actions">
