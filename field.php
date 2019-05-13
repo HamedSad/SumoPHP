@@ -7,7 +7,10 @@
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT * FROM field WHERE idField = ?');
+    $statement = $db->prepare('SELECT * FROM field f
+    INNER JOIN sports s
+    ON f.idField = s.idField
+    WHERE f.idField = ?');
 
     $statement->execute(array($idField));
     $field = $statement->fetch();
@@ -43,8 +46,14 @@
             <div class="textesport">
 
                 <?php echo "<img src=" . $field['urlImageField'] . ">" ; ?><br>
-                <p>Dimensions : <?php $field['dimensionsField'] ; ?></p>
+                <p>Dimensions : <?php echo $field['dimensionsField'] ; ?></p>
+                <p>Sports pratiqués : <?php echo $field['nameSport'] . ' '; 
                 
+                  while($field = $statement->fetch()){
+                    echo ', ';
+                    echo $field['nameSport'] ;   
+                  }
+                ?></p>
                 
                     
             </div>
