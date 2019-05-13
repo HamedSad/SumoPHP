@@ -1,13 +1,20 @@
 <?php 
 
-    require 'admin/database.php';
+    require '../database.php';
+
+    
 
     if(!empty ($_GET['idField'])){
         $idField = checkInput($_GET['idField']);
     }
 
     $db = Database::connect();
-    $statement = $db->prepare('SELECT * FROM field WHERE idField = ?');
+    $statement = $db->prepare('SELECT f.nameField, f.dimensionsField, f.urlImageField, s.nameSport 
+    FROM field AS f
+    INNER JOIN sports AS s
+    ON s.idField = f.idField
+    WHERE f.idField = ?');
+
 
     $statement->execute(array($idField));
     $field = $statement->fetch();
@@ -18,7 +25,7 @@
         $data = htmlspecialchars($data);
         return $data;
     }
-
+    Database::disconnect();
 ?>
 
 
@@ -42,13 +49,34 @@
             <hr>
             <div class="textesport">
 
-                <?php echo "<img src=" . $field['urlImageField'] . ">" ; ?><br>
-                <p>Dimensions : <?php $field['dimensionsField'] ; ?></p>
-                
-                
+                <?php echo "<img src=" . $field['urlImageField'] . ">" ; ?><br><br>
+                <?php echo "Dimensions : " . $field['dimensionsField'] ; ?><br><br>
+                 
+             
+               <?php 
                     
+                if($field['nameSport'] !=null)   {
+                    echo '<p>Sports pratiqués sur ce terrain : ';
+                    echo $field['nameSport'] . '';
+                
+                  while($field = $statement->fetch()){
+                    echo ', ';
+                    echo $field['nameSport'] ; 
+                    }
+           
+                  }
+                    else{
+                        echo "Ce terrain n'est pas encore utilisé";
+                    }
+                echo '</p>';
+                
+                
+                
+                ?>
+                
+
             </div>
-           <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+           <a class="btn btn-primary" href="../indexAdmin.php"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
         </div>
     </body>
 </html>
