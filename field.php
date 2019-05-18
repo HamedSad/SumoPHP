@@ -1,4 +1,6 @@
 <?php 
+    
+    session_start();
 
     require 'admin/database.php';
 
@@ -40,6 +42,9 @@
     </head>
     
     <body> 
+        
+<!--        <h2><?= $_SESSION['sportName']; ?></h2>-->
+        
         <div class="wrapp">
             <h1> <?php echo $field['nameField'] ; ?><br></h1>
             <hr>

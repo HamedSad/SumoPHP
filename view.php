@@ -1,5 +1,7 @@
 <?php 
 
+    
+
     require 'admin/database.php';
 
     if(!empty ($_GET['idSport'])){
@@ -7,6 +9,7 @@
     }
 
     $db = Database::connect();
+
     $statement = $db->prepare('SELECT sports.idSport, sports.nameSport, sports.titleSport, sports.seasonSport, sports.descriptionSport, sports.urlImageSport, field.idField, field.nameField, field.urlImageField FROM sports INNER jOIN field ON sports.idField = field.idField WHERE idSport = ?');
 
     $statement->execute(array($idSport));
@@ -18,6 +21,9 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+
+session_start();
+    $_SESSION['sportName'] = $sport['nameSport'];
 
 ?>
 

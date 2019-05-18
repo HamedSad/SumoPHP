@@ -1,3 +1,13 @@
+ <?php
+                      
+        require 'database.php';
+        $db = Database::connect();
+        $statement = $db->query("SELECT * FROM sports ORDER BY sports.idSport DESC");
+
+    ?>
+
+
+
 <!DOCTYPE html>
     <html>
         <head>
@@ -41,11 +51,7 @@
                     
                     <tbody>
                                        
-                 <?php
-                      
-                    require 'database.php';
-                    $db = Database::connect();
-                    $statement = $db->query("SELECT * FROM sports ORDER BY sports.idSport DESC");
+                <?php
                  
                     while($sport = $statement->fetch()){
                     
@@ -61,11 +67,9 @@
                         echo "</a>";
                         echo '</tr>';
                     
-                }
-                
-                    
-      
+                        }
                 ?>
+            
                        
                      </tbody>
                  </table>
